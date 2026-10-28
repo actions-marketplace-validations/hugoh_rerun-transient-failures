@@ -6,12 +6,15 @@ on: # yamllint disable-line rule:truthy
     branches:
       - main
 
-permissions:
-  contents: write
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-caller-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   release:
-    uses: hugoh/gh-workflows/.github/workflows/release.yml@89be8ed3394b541d853b9dab2ab968fcc3db831a # v1.30.0
+    uses: hugoh/gh-workflows/.github/workflows/release.yml@1395fc42fd4ca42b131cc238cea3cc6ab42af4dd # v1.40.11
     permissions:
       contents: write
     with:
